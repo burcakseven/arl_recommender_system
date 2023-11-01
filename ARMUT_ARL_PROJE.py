@@ -73,7 +73,10 @@ print(pivot_table)
 # Step 2: Generate association rules.
 
 frequent_itemsets = apriori(pivot_table.astype(bool), min_support=0.01, use_colnames=True)
-#rules = association_rules(frequent_itemsets,metric='support',min_threshold=0.01)
+rules = association_rules(frequent_itemsets,metric='support',min_threshold=0.01)
 
 
 # Step 3: Use the arl_recommender function to recommend a service to a user who last received service 2_0.
+
+sorted_rules = rules.sort_values(by='lift', ascending=False)
+print(sorted_rules.T)
